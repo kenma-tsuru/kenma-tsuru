@@ -1,38 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, HashRouter, Route, RouterProvider, Routes, createBrowserRouter } from 'react-router-dom/dist';
+import { HashRouter, Route, Routes } from 'react-router-dom/dist';
 import Home from './components/Home';
 import About from './components/About';
 import Contact from './components/Contact';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-    children: [
-      {
-        path: "about/",
-        element: <About />
-      },
-      {
-        path: "contact/",
-        element: <Contact />
-      },
-    ]
-  }
-])
+import Root from './components/Root';
+import Blog from "./components/Blog";
+import BlogPost from "./components/BlogPost";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
-        <Route path="/" element={<Home />}>
+        <Route path="/" element={<Root />}>
+          <Route index element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:id" element={<BlogPost />} />
         </Route>
         
       </Routes>
