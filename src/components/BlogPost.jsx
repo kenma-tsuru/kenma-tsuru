@@ -1,64 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
-
-const blogPosts = {
-    1: {
-        title: "Getting Started with React",
-        file: "/posts/post1.md",
-    },
-    2: {
-        title: "Understanding JavaScript Closures",
-        file: "/posts/post2.md",
-    },
-};
-
-const MarkdownRenderers = {
-    code({ language, value }) {
-        return <SyntaxHighlighter style={materialDark} language={language} children={value} />;
-    },
-};
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function BlogPost() {
-    const { id } = useParams();
-    const blogPost = blogPosts[id];
-    const [content, setContent] = useState("");
-
-    useEffect(() => {
-        fetch(blogPost.file)
-            .then((response) => response.text())
-            .then((text) => setContent(text));
-    }, [id]);
-
     return (
-        <div className="max-w-4xl mx-auto p-4">
-            <h1 className="text-3xl font-bold text-blue-600 mb-4">{blogPost.title}</h1>
-            <div className="prose">
-                <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    rehypePlugins={[rehypeRaw]}
-                    components={{
-                        code({ node, inline, className, children, ...props }) {
-                            const match = /language-(\w+)/.exec(className || '');
-                            return !inline && match ? (
-                                <SyntaxHighlighter style={materialDark} language={match[1]} PreTag="div" {...props}>
-                                    {String(children).replace(/\n$/, '')}
-                                </SyntaxHighlighter>
-                            ) : (
-                                <code className={className} {...props}>
-                                    {children}
-                                </code>
-                            );
-                        },
-                    }}
-                >
-                    {content}
-                </ReactMarkdown>
-            </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            {data.map((item, index) => renderContent(item, index))}
         </div>
     );
 }
+
+function renderContent(item, index) {
+    switch (item.type) {
+        case "h1":
+            return <h1 key={index} className="text-3xl font-bold mb-4">{item.content}</h1>;
+        case "p":
+            return <p key={index} className="mb-4 text-lg">{item.content}</p>;
+        case "image":
+            return <img key={index} src={item.src} alt={item.alt} className="mb-4 mx-auto" style={{ maxWidth: "100%", height: "auto" }} />;
+        case "code":
+            return (
+                <SyntaxHighlighter
+                    key={index}
+                    language={item.language}
+                    style={okaidia}
+                    showLineNumbers
+                    wrapLines={true}
+                    customStyle={{ whiteSpace: "pre-wrap", overflowX: "auto" }}
+                >
+                    {item.content}
+                </SyntaxHighlighter>
+            );
+        default:
+            return null;
+    }
+}
+
+
+
+export const data = [
+    {
+        type: "h1",
+        content: "Getting Started with Python"
+    },
+    {
+        type: "p",
+        content: "Python is a versatile and popular programming language known for its simplicity and readability. In this tutorial, we will go over the basics to get you started."
+    },
+    {
+        type: "image",
+        src: "https://example.com/python-logo.png",
+        alt: "Python Logo"
+    },
+    {
+        type: "p",
+        content: "The first thing you need to do is install Python on your machine. You can download the latest version from the official Python website."
+    },
+    {
+        type: "code",
+        language: "python",
+        content: `print("Hello, World! This should be responsive. Hello, World! This should be responsive. Hello, World! This should be responsive. ")`
+    },
+    {
+        type: "p",
+        content: "The code above prints 'Hello, World!' to the console. This is the simplest Python program and is often used to introduce beginners to programming."
+    }
+];
+
