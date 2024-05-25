@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Root from './components/Root';
 import Blog from "./components/Blog";
 import BlogPost from "./components/BlogPost";
+import './index.css'; 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

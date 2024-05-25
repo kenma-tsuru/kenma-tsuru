@@ -4,7 +4,6 @@ export default function Blog() {
     const blogs = [
         { id: 1, title: "Getting Started with React", summary: "Learn the basics of React and how to create your first application." },
         { id: 2, title: "Understanding JavaScript Closures", summary: "A deep dive into closures in JavaScript and how they work." },
-        { id: 3, title: "Building a REST API with FastAPI", summary: "Step-by-step guide to building a REST API using FastAPI." },
     ];
 
     return (
