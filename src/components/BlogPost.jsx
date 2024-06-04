@@ -1,9 +1,9 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 export default function BlogPost() {
     return (
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-full px-2 mx-auto">
             {data.map((item, index) => renderContent(item, index))}
         </div>
     );
@@ -16,26 +16,36 @@ function renderContent(item, index) {
         case "p":
             return <p key={index} className="mb-4 text-lg">{item.content}</p>;
         case "image":
-            return <img key={index} src={item.src} alt={item.alt} className="mb-4 mx-auto" style={{ maxWidth: "100%", height: "auto" }} />;
+            return (
+                <img
+                    key={index}
+                    src={item.src}
+                    alt={item.alt}
+                    className="mb-4 w-full h-auto" 
+                />
+            );
         case "code":
             return (
-                <SyntaxHighlighter
-                    key={index}
-                    language={item.language}
-                    style={okaidia}
-                    showLineNumbers
-                    wrapLines={true}
-                    customStyle={{ whiteSpace: "pre-wrap", overflowX: "auto" }}
-                >
-                    {item.content}
-                </SyntaxHighlighter>
+                <div key={index} className=" mb-4 rounded-md bg-gray-800">
+                    <SyntaxHighlighter
+                        language={item.language}
+                        style={docco}
+                        showLineNumbers={true}
+                        wrapLines={true}  // Enable line wrapping
+                        lineNumberStyle={{ color: 'gray' }}
+                        customStyle={{
+                            padding: '1rem',
+                            borderRadius: '0.5rem',
+                        }}
+                    >
+                        {item.content}
+                    </SyntaxHighlighter>
+                </div>
             );
         default:
             return null;
     }
 }
-
-
 
 export const data = [
     {
@@ -48,7 +58,7 @@ export const data = [
     },
     {
         type: "image",
-        src: "https://example.com/python-logo.png",
+        src: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg",
         alt: "Python Logo"
     },
     {
@@ -56,13 +66,21 @@ export const data = [
         content: "The first thing you need to do is install Python on your machine. You can download the latest version from the official Python website."
     },
     {
-        type: "code",
-        language: "python",
-        content: `print("Hello, World! This should be responsive. Hello, World! This should be responsive. Hello, World! This should be responsive. ")`
-    },
-    {
         type: "p",
         content: "The code above prints 'Hello, World!' to the console. This is the simplest Python program and is often used to introduce beginners to programming."
+    },
+    {
+        type: "code",
+        language: "javascript",
+        content: `import SyntaxHighlighter from 'react-syntax-highlighter';
+        import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+        const Component = () => {
+          const codeString = '(num) => num + 1';
+          return (
+            <SyntaxHighlighter language="javascript" style={docco}>
+              {codeString}
+            </SyntaxHighlighter>
+          );
+        };`
     }
 ];
-

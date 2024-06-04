@@ -70,7 +70,7 @@ export default function Root() {
                 )}
             </header>
 
-            <main className="flex-grow flex items-center justify-center">
+            <main className="flex-grow flex items-center justify-center w-full">
                 <Outlet />
             </main>
 
