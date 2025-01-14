@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-d3M1N1AeN1Yz5KfL5vG/3Q9Jq1fQCI7ERmY3d3Vh5v5j9tYVf5XY9F1G9Fw3m6W4QeHv5O+wJ4JBmWcE6B7Acg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title"><a href="{{ "/" | relative_url }}">{{ site.title }}</a></h1>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="{{ "/" | relative_url }}">Home</a></li>
+                    <li><a href="{{ "/projects/" | relative_url }}">Projects</a></li>
+                    <li><a href="{{ "/blogs/" | relative_url }}">Blog</a></li>
+                    <li><a href="{{ "/contact/" | relative_url }}">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content container">
+        {{ content }}
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; {{ site.time | date: "%Y" }} {{ site.author.name }}. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
