@@ -1,0 +1,176 @@
+/* Reset some basic elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Header Styles */
+.site-header {
+    background-color: #fff;
+    border-bottom: 1px solid #eaeaea;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.site-title {
+    float: left;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.site-title a {
+    text-decoration: none;
+    color: #333;
+}
+
+.navigation {
+    float: right;
+}
+
+.navigation ul {
+    list-style: none;
+}
+
+.navigation li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+    color: #007acc;
+}
+
+/* Main Content */
+.main-content {
+    background-color: #fff;
+    padding: 40px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-content h1, .main-content h2, .main-content h3 {
+    margin-bottom: 20px;
+    color: #007acc;
+}
+
+.main-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.main-content a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+.main-content a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
+.site-footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.site-footer p {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.social-links {
+    text-align: center;
+}
+
+.social-links a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #007acc;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .site-title, .navigation {
+        float: none;
+        text-align: center;
+    }
+
+    .navigation li {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+/* Add these styles to style.css */
+
+/* Contact Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px 0 5px;
+    font-weight: 500;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+input:focus, textarea:focus {
+    border-color: #007acc;
+    outline: none;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005fa3;
+}
